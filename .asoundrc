@@ -1,0 +1,19 @@
+pcm.usb
+{
+    type hw
+    card H340
+}
+pcm.!default
+{
+    type asym
+    playback.pcm
+    {
+        type plug
+        slave.pcm "dmix"
+    }
+    capture.pcm
+    {
+        type plug
+        slave.pcm "usb"
+    }
+}
