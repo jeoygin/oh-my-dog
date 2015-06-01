@@ -1,0 +1,3 @@
+#!/bin/bash
+
+feh -F ~/Pictures/i3-keyboard-layer.png

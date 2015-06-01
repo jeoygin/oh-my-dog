@@ -1,0 +1,18 @@
+#!/bin/bash
+
+SELF_PATH=`readlink -f $0`
+PROJECT_PATH=`dirname "$SELF_PATH"`
+
+cd "$PROJECT_PATH"
+
+killall i3status
+sleep 1
+
+screens=$( xrandr| grep 'connected' | grep -v 'disconnected' | wc -l )
+i3status | i3-dzen-bridge.py | dzen2 -y -1 -fn "ubuntu mono" -ta r -xs 1 -dock &
+if [ $screens -gt 1 ]; then
+    i3status | i3-dzen-bridge.py | dzen2 -y -1 -fn "ubuntu mono" -ta r -xs 2 -dock &
+fi
+
+exit 0
+
