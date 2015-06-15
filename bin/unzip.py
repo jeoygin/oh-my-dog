@@ -3,21 +3,24 @@
 
 import os
 import sys
+import distutils.core
 import zipfile
+import chardet
 
 print "Processing File " + sys.argv[1]
 
-encoding = 'UTF-8'
+userEncoding = False
 if len(sys.argv) > 2:
+    userEncoding = True
     encoding = sys.argv[2]
 
 file = zipfile.ZipFile(sys.argv[1],"r");
 for name in file.namelist():
+    if not userEncoding:
+        encoding = chardet.detect(name)['encoding']
     utf8name = name.decode(encoding)
     print "  Extracting " + utf8name
-    pathname = os.path.dirname(utf8name)
-    if not os.path.exists(pathname) and pathname != "":
-        os.makedirs(pathname)
+    distutils.dir_util.mkpath(utf8name)
     data = file.read(name)
     if not os.path.exists(utf8name):
         fo = open(utf8name, "w")
