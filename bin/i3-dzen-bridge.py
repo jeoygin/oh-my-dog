@@ -22,6 +22,7 @@ AC     = '^i(%s/power-ac.xbm)' % PREFIX
 CPU    = '^i(%s/cpu.xbm)' % PREFIX
 TEMP   = '^i(%s/temp.xbm)' % PREFIX
 LOAD   = '^i(%s/load.xbm)' % PREFIX
+MEM    = '^i(%s/mem.xbm)' % PREFIX
 
 
 
@@ -33,6 +34,7 @@ REPLACE_ITEM = {
     '_U': CPU,
     '_T': TEMP,
     '_L': LOAD,
+    '_M': MEM,
 }.items()
 
 
@@ -44,7 +46,8 @@ COLORS = {
 
 CPU_PATTERN = re.compile('_U:\s+(\d{2,3})%')
 TEMP_PATTERN = re.compile('_T:\s+(\d+)\s?')
-
+MEM_PATTERN = re.compile('_M:\s+{{mem_avail}}')
+MEM_AVAIL_PATTERN = re.compile('MemAvailable:\s+(\d+)\s+kB')
 
 def get_color(t):
     if t < 50:
@@ -77,9 +80,24 @@ while True:
         new_temp_text = get_color(int(temperature)) + origin_temp_text
         line = line.replace(origin_temp_text, new_temp_text)
 
+    mem_matches = MEM_PATTERN.search(line)
+    if mem_matches is not None:
+        origin_mem_text = mem_matches.group()
+        with open('/proc/meminfo', 'r') as f:
+            meminfo = f.read()
+            mem_avail_matches = MEM_AVAIL_PATTERN.search(meminfo)
+            if mem_avail_matches is not None:
+                mem_avail = float(mem_avail_matches.groups()[0])/1024/1024
+                color = COLORS['GREEN']
+                if mem_avail < 0.5:
+                    color = COLORS['RED']
+                elif mem_avail < 1:
+                    color = COLORS['YELLOW']
+                new_mem_text = color + origin_mem_text.replace('{{mem_avail}}', '{:.2}G'.format(mem_avail))
+                line = line.replace(origin_mem_text, new_mem_text)
+
     for k, v in REPLACE_ITEM:
         line = line.replace(k, v)
-
 
     sys.stdout.write(line + "\n")
     sys.stdout.flush()
