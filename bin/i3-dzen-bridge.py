@@ -93,7 +93,7 @@ while True:
                     color = COLORS['RED']
                 elif mem_avail < 1:
                     color = COLORS['YELLOW']
-                new_mem_text = color + origin_mem_text.replace('{{mem_avail}}', '{:.2}G'.format(mem_avail))
+                new_mem_text = color + origin_mem_text.replace('{{mem_avail}}', '{:.2f}G'.format(mem_avail))
                 line = line.replace(origin_mem_text, new_mem_text)
 
     for k, v in REPLACE_ITEM:
