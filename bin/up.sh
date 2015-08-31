@@ -1,3 +1,3 @@
 #!/bin/bash
 
-uptime | cut -d ' ' -f 5 | cut -d ',' -f 1
+uptime | cut -d ' ' -f4- | cut -d ',' -f 1
