@@ -202,10 +202,13 @@ exec_always i3dzen2 &
 exec guake &
 
 # Chinese input
-exec fcitx &
+exec_always fcitx &
 
 # Window switcher
 exec rofi -key-window mod1+Tab -key-run F9 &
+
+# Volumn manager
+exec volumeicon &
 
 # Clipboard manager
 exec clipit &
