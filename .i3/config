@@ -224,6 +224,7 @@ exec zeal &
 # Lock screen, logout, reboot and shutdown
 #set $Locker xlock && sleep 1
 set $Locker i3lock-wrapper && sleep 1
+exec xautolock -time 3 -detectsleep -locker "$Locker" &
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
