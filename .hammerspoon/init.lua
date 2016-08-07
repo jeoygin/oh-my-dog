@@ -1,36 +1,81 @@
-local laptopScreen = "Color LCD"
-local benqScreen = "BenQ GL2450"
-local windowLayout = {
-    {"Safari",  nil,          laptopScreen, hs.layout.left50,    nil, nil},
-    {"Mail",    nil,          laptopScreen, hs.layout.right50,   nil, nil},
-    {"iTerm2",  nil,          benqScreen,   hs.layout.maximized, nil, nil},
-    {"iTunes",  "iTunes",     laptopScreen, hs.layout.maximized, nil, nil},
-    {"iTunes",  "MiniPlayer", laptopScreen, nil, nil, hs.geometry.rect(0, -48, 400, 48)},
-}
-hs.layout.apply(windowLayout)
+require 'extensions'
 
--- Set up hotkey combinations
+local mainScreen = "Color LCD"
+local secondScreen = "BenQ GL2450"
+
+local mod0 = {"cmd", "alt", "ctrl"}
 local mod1 = {"cmd", "alt"}
 local mod2 = {"cmd", "ctrl"}
 local mod3 = {"cmd", "alt", "shift"}
 local mod4 = {"cmd", "ctrl", "shift"} 
 
+-- Set window animation off. It's much smoother.
+hs.window.animationDuration = 0
+
+local windowLayout = {
+    {"Safari",  nil,          mainScreen,   hs.layout.left50,    nil, nil},
+    {"Mail",    nil,          mainScreen,   hs.layout.right50,   nil, nil},
+    {"iTerm2",  nil,          secondScreen, hs.layout.maximized, nil, nil},
+    {"iTunes",  "iTunes",     mainScreen,   hs.layout.maximized, nil, nil},
+    {"iTunes",  "MiniPlayer", mainScreen,   nil, nil, hs.geometry.rect(0, -48, 400, 48)},
+}
+hs.layout.apply(windowLayout)
+
 -- Set grid size.
-hs.grid.GRIDWIDTH  = 3
+hs.grid.GRIDWIDTH  = 6
 hs.grid.GRIDHEIGHT = 3
 hs.grid.MARGINX    = 0
 hs.grid.MARGINY    = 0
 
--- Set window animation off. It's much smoother.
-hs.window.animationDuration = 0
+switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter())
 
-switcher_browsers = hs.window.switcher.new{'Google Chrome'}
-switcher_terms = hs.window.switcher.new{'iTerm2'}
+hs.hotkey.bind('alt', 'tab' , function() switcher:next() end)
 
-hs.hotkey.bind(mod1, '1' , function() hs.application.launchOrFocus("iTerm") end)
-hs.hotkey.bind(mod1, '2' , function() hs.application.launchOrFocus("Google Chrome") end)
-hs.hotkey.bind(mod3, '1' , function() switcher_terms:next() end)
-hs.hotkey.bind(mod3, '2' , function() switcher_browsers:next() end)
+hs.hotkey.bind(mod3, 'I', launchOrCycleFocus("iTerm2"))
+hs.hotkey.bind(mod3, 'C', launchOrCycleFocus("Google Chrome"))
+hs.hotkey.bind(mod3, 'F', launchOrCycleFocus("Finder"))
+
+hs.hotkey.bind(mod0, "H", function()
+  hs.hints.windowHints()
+end)
+
+hs.hotkey.bind(mod0, "1", function()
+  local win = hs.window.focusedWindow()
+  win:moveToScreen(mainScreen)
+end)
+
+hs.hotkey.bind(mod0, "2", function()
+  local win = hs.window.focusedWindow()
+  win:moveToScreen(secondScreen)
+end)
+
+hs.hotkey.bind(mod0, "Left", function()
+  hs.window.focusedWindow():moveOneScreenWest()
+end)
+
+hs.hotkey.bind(mod0, "Right", function()
+  hs.window.focusedWindow():moveOneScreenEast()
+end)
+
+hs.hotkey.bind(mod0, "Up", function()
+  hs.window.focusedWindow():moveOneScreenNorth()
+end)
+
+hs.hotkey.bind(mod0, "Down", function()
+  hs.window.focusedWindow():moveOneScreenSouth()
+end)
+
+hs.hotkey.bind(mod0, "F", function()
+  hs.window.focusedWindow():toggleFullScreen()
+end)
+
+hs.hotkey.bind(mod1, "F", function()
+  hs.window.focusedWindow():maximize(0)
+end)
+
+hs.hotkey.bind(mod1, "C", function()
+  hs.window.focusedWindow():centerOnScreen()
+end)
 
 hs.hotkey.bind(mod1, "H", function()
   local win = hs.window.focusedWindow()
@@ -220,7 +265,7 @@ hs.hotkey.bind(mod3, "Left", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind(mod1, ",", function()
+hs.hotkey.bind(mod1, "[", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -230,7 +275,7 @@ hs.hotkey.bind(mod1, ",", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind(mod1, ".", function()
+hs.hotkey.bind(mod1, "]", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -260,18 +305,6 @@ hs.hotkey.bind(mod1, "=", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind(mod1, "F", function()
-  hs.window.focusedWindow():maximize(0)
-end)
-
-hs.hotkey.bind(mod1, "c", function()
-  hs.window.focusedWindow():centerOnScreen()
-end)
-
-hs.hotkey.bind(mod1, "T", function()
-  hs.window.focusedWindow():toggleFullScreen()
-end)
-
 hs.hotkey.bind(mod2, 'Left',  function()
   hs.window.focusedWindow():focusWindowWest()
 end)
@@ -292,28 +325,15 @@ hs.hotkey.bind(mod2, 'L', hs.grid.pushWindowRight)
 hs.hotkey.bind(mod2, 'N', hs.grid.pushWindowNextScreen)
 hs.hotkey.bind(mod2, 'P', hs.grid.pushWindowNextScreen)
 
-hs.hotkey.bind(mod2, '=', hs.grid.resizeWindowTaller)
+hs.hotkey.bind(mod2, '[', hs.grid.resizeWindowWider)
+hs.hotkey.bind(mod2, ']', hs.grid.resizeWindowThinner)
 hs.hotkey.bind(mod2, '-', hs.grid.resizeWindowShorter)
-hs.hotkey.bind(mod2, '.', hs.grid.resizeWindowWider)
-hs.hotkey.bind(mod2, ',', hs.grid.resizeWindowThinner)
+hs.hotkey.bind(mod2, '=', hs.grid.resizeWindowTaller)
 
-hs.hotkey.bind(mod4, '.', function() hs.grid.adjustWidth(1)   end)
-hs.hotkey.bind(mod4, ',', function() hs.grid.adjustWidth(-1)  end)
-hs.hotkey.bind(mod4, '=', function() hs.grid.adjustHeight(1)  end)
+hs.hotkey.bind(mod4, '[', function() hs.grid.adjustWidth(-1)  end)
+hs.hotkey.bind(mod4, ']', function() hs.grid.adjustWidth(1)   end)
 hs.hotkey.bind(mod4, '-', function() hs.grid.adjustHeight(-1) end)
-
-hs.hotkey.bind(mod4, "Left", function()
-  hs.window.focusedWindow():moveOneScreenWest()
-end)
-hs.hotkey.bind(mod4, "Right", function()
-  hs.window.focusedWindow():moveOneScreenEast()
-end)
-hs.hotkey.bind(mod4, "Up", function()
-  hs.window.focusedWindow():moveOneScreenNorth()
-end)
-hs.hotkey.bind(mod4, "Down", function()
-  hs.window.focusedWindow():moveOneScreenSouth()
-end)
+hs.hotkey.bind(mod4, '=', function() hs.grid.adjustHeight(1)  end)
 
 local mouseCircle = nil
 local mouseCircleTimer = nil
@@ -338,9 +358,9 @@ function mouseHighlight()
     -- Set a timer to delete the circle after 3 seconds
     mouseCircleTimer = hs.timer.doAfter(3, function() mouseCircle:delete() end)
 end
-hs.hotkey.bind(mod3, "D", mouseHighlight)
+hs.hotkey.bind(mod0, "D", mouseHighlight)
 
-hs.hotkey.bind(mod1, "R", function()
+hs.hotkey.bind(mod0, "R", function()
   hs.reload()
 end)
 
