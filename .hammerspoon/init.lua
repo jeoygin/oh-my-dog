@@ -325,8 +325,8 @@ hs.hotkey.bind(mod2, 'L', hs.grid.pushWindowRight)
 hs.hotkey.bind(mod2, 'N', hs.grid.pushWindowNextScreen)
 hs.hotkey.bind(mod2, 'P', hs.grid.pushWindowNextScreen)
 
-hs.hotkey.bind(mod2, '[', hs.grid.resizeWindowWider)
-hs.hotkey.bind(mod2, ']', hs.grid.resizeWindowThinner)
+hs.hotkey.bind(mod2, '[', hs.grid.resizeWindowThinner)
+hs.hotkey.bind(mod2, ']', hs.grid.resizeWindowWider)
 hs.hotkey.bind(mod2, '-', hs.grid.resizeWindowShorter)
 hs.hotkey.bind(mod2, '=', hs.grid.resizeWindowTaller)
 
