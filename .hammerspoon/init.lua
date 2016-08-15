@@ -1,7 +1,7 @@
 require 'extensions'
 
-local mainScreen = "Color LCD"
-local secondScreen = "BenQ GL2450"
+local mainScreen = '0,0'
+local secondScreen = '-1,0'
 
 local mod0 = {"cmd", "alt", "ctrl"}
 local mod1 = {"cmd", "alt"}
@@ -15,6 +15,7 @@ hs.window.animationDuration = 0
 local windowLayout = {
     {"Safari",  nil,          mainScreen,   hs.layout.left50,    nil, nil},
     {"Mail",    nil,          mainScreen,   hs.layout.right50,   nil, nil},
+    {"Google Chrome",  nil,   mainScreen,   hs.layout.maximized, nil, nil},
     {"iTerm2",  nil,          secondScreen, hs.layout.maximized, nil, nil},
     {"iTunes",  "iTunes",     mainScreen,   hs.layout.maximized, nil, nil},
     {"iTunes",  "MiniPlayer", mainScreen,   nil, nil, hs.geometry.rect(0, -48, 400, 48)},
@@ -31,9 +32,11 @@ switcher = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):s
 
 hs.hotkey.bind('alt', 'tab' , function() switcher:next() end)
 
-hs.hotkey.bind(mod3, 'I', launchOrCycleFocus("iTerm2"))
-hs.hotkey.bind(mod3, 'C', launchOrCycleFocus("Google Chrome"))
-hs.hotkey.bind(mod3, 'F', launchOrCycleFocus("Finder"))
+hs.hotkey.bind(mod4, 'I', launchOrCycleFocus("iTerm2"))
+hs.hotkey.bind(mod4, 'C', launchOrCycleFocus("Google Chrome"))
+hs.hotkey.bind(mod4, 'F', launchOrCycleFocus("Finder"))
+hs.hotkey.bind(mod4, 'W', launchOrCycleFocus("企业微信"))
+hs.hotkey.bind(mod4, 'Q', launchOrCycleFocus("QQ"))
 
 hs.hotkey.bind(mod0, "H", function()
   hs.hints.windowHints()
