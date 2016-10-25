@@ -37,6 +37,7 @@ hs.hotkey.bind(mod4, 'C', launchOrCycleFocus("Google Chrome"))
 hs.hotkey.bind(mod4, 'F', launchOrCycleFocus("Finder"))
 hs.hotkey.bind(mod4, 'W', launchOrCycleFocus("企业微信"))
 hs.hotkey.bind(mod4, 'Q', launchOrCycleFocus("QQ"))
+hs.hotkey.bind(mod4, 'M', launchOrCycleFocus("NeteaseMusic"))
 
 hs.hotkey.bind(mod0, "H", function()
   hs.hints.windowHints()
