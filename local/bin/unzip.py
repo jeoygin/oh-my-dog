@@ -14,10 +14,14 @@ if len(sys.argv) > 2:
     userEncoding = True
     encoding = sys.argv[2]
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 file = zipfile.ZipFile(sys.argv[1],"r");
 for name in file.namelist():
     if not userEncoding:
         encoding = chardet.detect(name)['encoding']
+    print name + ' ' + encoding + ' ' + sys.getdefaultencoding() 
     utf8name = name.decode(encoding)
     print "  Extracting " + utf8name
     distutils.dir_util.mkpath(utf8name)
