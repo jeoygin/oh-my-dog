@@ -13,7 +13,7 @@ function init_zsh() {
 
 function start_zsh() {
   export HOME="$CUR_DIR"
-  export PATH="$HOME"/bin:$PATH
+  export PATH="$HOME/local/bin:$HOME/bin:$PATH"
   zsh
 }
 
