@@ -1,0 +1,17 @@
+\#*
+*~
+*.swp
+*.pyc
+
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc
+
+GPATH
+GRTAGS
+GTAGS
+
+/build/
