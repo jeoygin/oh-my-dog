@@ -16,9 +16,9 @@ function link_zsh() {
   for rcfile in "$CUR_DIR"/.zprezto/runcoms/z*; do
     filename=$( basename "$rcfile" )
     if [[ -e "$CUR_DIR/.$filename" ]]; then
-      echo -n "$CUR_DIR/.$filename exists. Do you want to overwrite? [y/N]"
+      echo -n "$CUR_DIR/.$filename exists. Do you want to overwrite? [y/N] "
       read _overwrite
-      if [[ "X$_overwrite" == "y" ]]; then
+      if [[ "X$_overwrite" == "Xy" ]]; then
         ln -sf "$rcfile" "$CUR_DIR/.$filename"
       fi
     else
