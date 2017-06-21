@@ -11,6 +11,22 @@ function init_zsh() {
   done
 }
 
+function link_zsh() {
+  test -e "$CUR_DIR"/.zprezto || ln -s "$HOME"/.zprezto "$CUR_DIR"
+  for rcfile in "$CUR_DIR"/.zprezto/runcoms/z*; do
+    filename=$( basename "$rcfile" )
+    if [[ -e "$CUR_DIR/.$filename" ]]; then
+      echo -n "$CUR_DIR/.$filename exists. Do you want to overwrite? [y/N]"
+      read _overwrite
+      if [[ "X$_overwrite" == "y" ]]; then
+        ln -sf "$rcfile" "$CUR_DIR/.$filename"
+      fi
+    else
+      ln -s "$rcfile" "$CUR_DIR/.$filename"
+    fi
+  done
+}
+
 function start_zsh() {
   export HOME="$CUR_DIR"
   export PATH="$HOME/local/bin:$HOME/bin:$PATH"
@@ -20,6 +36,9 @@ function start_zsh() {
 case "$1" in
   init)
     init_zsh
+    ;;
+  link)
+    link_zsh
     ;;
   start)
     start_zsh
