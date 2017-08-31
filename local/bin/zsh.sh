@@ -43,4 +43,6 @@ case "$1" in
   start)
     start_zsh
     ;;
+  *)
+    echo "Usage: $( basename $0 ) <init|link|start>"
 esac
