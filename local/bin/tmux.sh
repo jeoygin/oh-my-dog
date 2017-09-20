@@ -12,6 +12,6 @@ case "$1" in
     tmux -S"$SOCKETS_DIR/tmux" a
     ;;
   *)
-    echo "Usage: $( basename $0 ) <new|a>"
+    tmux -S"$SOCKETS_DIR/tmux" "$@"
 esac
 
