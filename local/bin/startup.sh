@@ -2,4 +2,4 @@
 
 ssh-add -K
 eval $(gpg-agent)
-emacs -nw --no-desktop --daemon ws
+emacs -nw --no-desktop --daemon=ws
