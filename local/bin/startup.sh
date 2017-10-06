@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ssh-add -K
-eval $(gpg-agent)
+gpg-agent --daemon
 emacs -nw --no-desktop --daemon=ws
