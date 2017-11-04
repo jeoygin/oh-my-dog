@@ -15,3 +15,6 @@ brew install terminal-notifier
 # Record and share your terminal sessions, the right way
 # https://asciinema.org/
 brew install asciinema
+
+# https://www.tug.org/mactex/
+brew cask install mactex
