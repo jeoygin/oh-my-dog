@@ -41,3 +41,7 @@ brew install fasd
 # Convert terminal recordings to animated gifs
 # https://github.com/icholy/ttygif
 brew install ttygif
+
+# Simplified and community-driven man pages
+# http://tldr-pages.github.io/
+brew install tldr
