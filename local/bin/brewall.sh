@@ -18,3 +18,6 @@ brew install asciinema
 
 # https://www.tug.org/mactex/
 brew cask install mactex
+
+# https://github.com/zplug/zplug
+brew install zplug
