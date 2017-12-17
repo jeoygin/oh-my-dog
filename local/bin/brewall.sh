@@ -21,3 +21,7 @@ brew cask install mactex
 
 # https://github.com/zplug/zplug
 brew install zplug
+
+# A cd command that learns - easily navigate directories from the command line
+# https://github.com/wting/autojump
+brew install autojump
