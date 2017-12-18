@@ -25,3 +25,19 @@ brew install zplug
 # A cd command that learns - easily navigate directories from the command line
 # https://github.com/wting/autojump
 brew install autojump
+
+# fzy is a fast, simple fuzzy text selector for the terminal with an advanced scoring algorithm.
+# https://github.com/jhawthorn/fzy
+brew install fzy
+
+# fzf is a general-purpose command-line fuzzy finder.
+# https://github.com/junegunn/fzf
+brew install fzf
+
+# Command-line productivity booster, offers quick access to files and directories
+# https://github.com/clvv/fasd
+brew install fasd
+
+# Convert terminal recordings to animated gifs
+# https://github.com/icholy/ttygif
+brew install ttygif
