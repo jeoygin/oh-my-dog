@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+# GNU command line tools
+# https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+brew install coreutils
+brew install binutils
+brew install diffutils
+brew install gawk
+
+# Tmux
+brew install tmux
+
+# Emacs dev
+brew install emacs --with-cocoa --with-imagemagick@6 --with-gnutls --with-dbus --HEAD
+
 # A code-searching tool similar to ack, but faster.
 # https://github.com/ggreer/the_silver_searcher
 brew install the_silver_searcher 
@@ -37,6 +50,7 @@ brew install fzf
 # Command-line productivity booster, offers quick access to files and directories
 # https://github.com/clvv/fasd
 brew install fasd
+eval "$(fasd --init auto)"
 
 # Convert terminal recordings to animated gifs
 # https://github.com/icholy/ttygif
