@@ -59,3 +59,7 @@ brew install ttygif
 # Simplified and community-driven man pages
 # http://tldr-pages.github.io/
 brew install tldr
+
+# Magnificent app which corrects your previous console command
+# https://github.com/nvbn/thefuck
+brew install thefuck
