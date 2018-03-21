@@ -5,8 +5,13 @@ gpg-agent --daemon
 emacs -nw --no-desktop --daemon=ws
 
 tmux.sh new-session -s zombie -d
-sleep 3
+echo "Restoring TMUX..."
+while [ "$( tmux.sh list-sessions 2>/dev/null | grep zombie | wc -l )" -eq 0 ]; do
+  sleep 1
+done
 tmux.sh send-keys -t zombie ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh C-m
-sleep 5
+while [ "$( tmux.sh list-sessions 2>/dev/null | wc -l )" -lt 2 ]; do
+  sleep 1
+done
 tmux.sh kill-session -t zombie
 tmux.sh a
