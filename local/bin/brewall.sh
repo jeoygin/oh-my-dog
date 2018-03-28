@@ -63,3 +63,7 @@ brew install tldr
 # Magnificent app which corrects your previous console command
 # https://github.com/nvbn/thefuck
 brew install thefuck
+
+# NeoMutt is a command line mail reader (or MUA). It's a fork of Mutt with added features.
+# https://github.com/neomutt/neomutt
+brew install neomutt/homebrew-neomutt/neomutt
