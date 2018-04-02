@@ -67,3 +67,6 @@ brew install thefuck
 # NeoMutt is a command line mail reader (or MUA). It's a fork of Mutt with added features.
 # https://github.com/neomutt/neomutt
 brew install neomutt/homebrew-neomutt/neomutt
+
+# Extracts URLs from text
+brew install urlview
