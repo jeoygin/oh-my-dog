@@ -95,9 +95,11 @@ file=$1
 # This is more secure than creating a temporary file in an existing
 # directory.
 
-tmpdir=/tmp/$LOGNAME$$
-umask 077
-mkdir "$tmpdir" || exit 1
+tmpdir=$(mktemp -d -t tmp.XXXXXXXXXX)
+function finish {
+  rm -rf "$tmpdir"
+}
+
 tmpfile="$tmpdir/${file##*/}"
 
 # Copy mutt's temporary file to our temporary directory so that we can
@@ -108,7 +110,7 @@ cp "$file" "$tmpfile"
 # Run the viewer in the background and delete the temporary files when done. 
 
 (
+    trap finish EXIT
     "$viewer" $options "$tmpfile"
-    rm -f "$tmpfile"
-    rmdir "$tmpdir"
+    sleep 3
 ) &
