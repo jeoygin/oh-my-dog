@@ -70,3 +70,11 @@ brew install neomutt/homebrew-neomutt/neomutt
 
 # Extracts URLs from text
 brew install urlview
+
+# PathPicker accepts a wide range of input -- output from git commands, grep results, searches
+# https://github.com/facebook/PathPicker
+brew install fpp
+
+# OS X menubar status indicator
+# https://github.com/tonsky/AnyBar
+brew cask install anybar
