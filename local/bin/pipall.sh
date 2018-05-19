@@ -4,3 +4,7 @@ pip install percol
 # allow you to easily launch a Web browser for URLs contained in email messages. It is a
 # replacement for the "urlview" program.
 pip install urlscan
+
+# Simple viewer for ics in mutt
+# https://github.com/dmedvinsky/mutt-ics
+pip install mutt_ics

@@ -78,3 +78,5 @@ brew install fpp
 # OS X menubar status indicator
 # https://github.com/tonsky/AnyBar
 brew cask install anybar
+
+brew install calcurse
