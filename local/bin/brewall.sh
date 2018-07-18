@@ -80,3 +80,11 @@ brew install fpp
 brew cask install anybar
 
 brew install calcurse
+
+# Namazu: a Full-Text Search Engine
+# http://www.namazu.org/
+brew install namazu
+
+# mairix is a program for indexing and searching email messages stored in Maildir, MH or mbox folders
+# https://github.com/rc0/mairix
+brew install mairix
