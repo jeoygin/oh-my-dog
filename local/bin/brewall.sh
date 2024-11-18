@@ -15,7 +15,7 @@ brew install emacs --with-cocoa --with-imagemagick@6 --with-gnutls --with-dbus -
 
 # A code-searching tool similar to ack, but faster.
 # https://github.com/ggreer/the_silver_searcher
-brew install the_silver_searcher 
+brew install the_silver_searcher
 
 # A simple, fast and user-friendly alternative to find.
 # https://github.com/sharkdp/fd
@@ -88,3 +88,24 @@ brew install namazu
 # mairix is a program for indexing and searching email messages stored in Maildir, MH or mbox folders
 # https://github.com/rc0/mairix
 brew install mairix
+
+# Python version management
+brew install pyenv
+
+# 7-Zip is a file archiver with a high compression ratio
+brew install 7-zip
+
+# GNU Emacs text editor
+brew install emacs
+
+# Alternative to top/htop
+# https://nicolargo.github.io/glances/
+brew install glances
+
+# Official Amazon AWS command-line interface
+# https://aws.amazon.com/cli/
+brew install awscli
+
+# Swiss-army knife of markup format conversion
+# https://pandoc.org/
+brew install pandoc
