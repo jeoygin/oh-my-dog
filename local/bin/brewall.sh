@@ -109,3 +109,11 @@ brew install awscli
 # Swiss-army knife of markup format conversion
 # https://pandoc.org/
 brew install pandoc
+
+# Synchronize a maildir with an IMAP server
+# https://isync.sourceforge.io/
+brew install isync
+
+# Thread-based email index, search, and tagging
+# https://notmuchmail.org/
+brew install notmuch
